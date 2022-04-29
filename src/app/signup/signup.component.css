@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  margin: 2rem;
+}
+.form-inner-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 1rem 0;
+}
+.form-inner-container label {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.form-inner-container input {
+  width: 15rem;
+  height: 2rem;
+  font-size: 1.5rem;
+}
+.form-submit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 3rem 0;
+}
+.form-submit-container button {
+  width: 10rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.back-to-login button {
+  width: 15rem;
+  height: 3rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
