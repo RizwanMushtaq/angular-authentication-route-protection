@@ -1,33 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observer, Subscription } from 'rxjs';
+import { TitleService } from './title.service';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css'],
 })
-export class WelcomeComponent implements OnInit {
-  title: Observable<any>;
+export class WelcomeComponent implements OnInit, OnDestroy {
+  title: string;
+  titleSubscription: Subscription;
 
-  constructor() {}
+  constructor(private titleService: TitleService) {}
 
   ngOnInit(): void {
-    this.title = new Observable((observer) => {
-      let titleString = 'Welcome Angular!';
-      let value = 1;
+    const observer: Observer<any> = {
+      next: (data: string) => (this.title = data),
+      error: (error: Error) => console.error('Observer got an error: ' + error),
+      complete: () => console.log('Observer got a complete notification'),
+    };
 
-      let interval = setInterval(() => {
-        let modifiedString = titleString.slice(0, value);
-        observer.next(modifiedString);
+    const stringObservable = this.titleService.getString();
 
-        if (value >= titleString.length) {
-          value = 1;
-        } else {
-          value++;
-        }
-      }, 300);
+    this.titleSubscription = stringObservable.subscribe(observer);
+  }
 
-      return () => clearInterval(interval);
-    });
+  ngOnDestroy() {
+    this.titleSubscription.unsubscribe();
   }
 }
