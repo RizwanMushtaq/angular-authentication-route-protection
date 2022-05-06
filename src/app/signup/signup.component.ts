@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
+import { SignupService } from './signup.service';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -12,12 +14,12 @@ export class SignupComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private signupService: SignupService) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
     console.log('submitted');
-    console.log(this.signingForm);
+    this.signupService.signup();
   }
 }
