@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { SigninService } from './signin.service';
 
 @Component({
   selector: 'app-signin',
@@ -7,17 +8,24 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
-  signingForm = new FormGroup({
+  signinForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private signinService: SigninService) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
     console.log('submitted');
-    console.log(this.signingForm);
+    this.signinService.signin(this.signinForm.value).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

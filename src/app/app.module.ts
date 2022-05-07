@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SigninComponent } from './signin/signin.component';
     WelcomeComponent,
     SignupComponent,
     SigninComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,

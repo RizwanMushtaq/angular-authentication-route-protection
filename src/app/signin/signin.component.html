@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="signingForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
     <h1>Sign In Form</h1>
     <div class="form-inner-container">
       <label for="email" class="form-label">email</label>
@@ -24,7 +24,7 @@
       />
     </div>
     <div class="form-submit-container">
-      <button type="submit" [disabled]="!signingForm.valid">Sign In</button>
+      <button type="submit" [disabled]="!signinForm.valid">Sign In</button>
     </div>
   </form>
   <div class="back-to-login" routerLink="">

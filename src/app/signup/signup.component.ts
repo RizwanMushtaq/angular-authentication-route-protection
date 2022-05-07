@@ -10,6 +10,10 @@ import { signupResponse } from './signUpTypes';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
+  isLoading = false;
+  isSignupSuccessful = false;
+  errorMessage: string;
+
   signupForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -20,13 +24,17 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
+    this.isLoading = true;
     this.signupService.signup(this.signupForm.value).subscribe({
       next: (response: signupResponse) => {
         console.log(response);
-        alert(response.email + 'is signed up');
+        this.isLoading = false;
+        this.isSignupSuccessful = true;
       },
-      error: (error) => {
-        console.log(error);
+      error: (errorMessage) => {
+        console.log(errorMessage);
+        this.errorMessage = errorMessage;
+        this.isLoading = false;
       },
     });
   }

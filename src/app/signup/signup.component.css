@@ -40,3 +40,9 @@
   font-size: 1rem;
   margin-top: 1rem;
 }
+
+.error-div {
+  background-color: #ef7b4f;
+  font-size: 1.5rem;
+  font-family: "Droid Sans";
+}
