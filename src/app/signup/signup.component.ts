@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { SignupService } from './signup.service';
+import { signupResponse } from './signUpTypes';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +10,7 @@ import { SignupService } from './signup.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  signingForm = new FormGroup({
+  signupForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
@@ -19,7 +20,14 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log('submitted');
-    this.signupService.signup();
+    this.signupService.signup(this.signupForm.value).subscribe({
+      next: (response: signupResponse) => {
+        console.log(response);
+        alert(response.email + 'is signed up');
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

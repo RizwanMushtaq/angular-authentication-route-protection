@@ -1,6 +1,6 @@
 <div class="container">
-  <form [formGroup]="signingForm" (ngSubmit)="onSubmit()">
-    <h1>Sign In Form</h1>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <h1>Sign Up Form</h1>
     <div class="form-inner-container">
       <label for="email" class="form-label">email</label>
       <input
@@ -9,6 +9,7 @@
         class="form-control"
         formControlName="email"
         email
+        required
       />
     </div>
     <div class="form-inner-container">
@@ -19,10 +20,11 @@
         minlength="6"
         class="form-control"
         formControlName="password"
+        required
       />
     </div>
     <div class="form-submit-container">
-      <button type="submit" [disabled]="!signingForm.valid">Sign Up</button>
+      <button type="submit" [disabled]="!signupForm.valid">Sign Up</button>
     </div>
   </form>
   <div class="back-to-login" routerLink="">
