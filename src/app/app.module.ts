@@ -9,6 +9,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AppPageComponent } from './app-page/app-page.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     SignupComponent,
     SigninComponent,
     LoadingSpinnerComponent,
+    AppPageComponent,
   ],
   imports: [
     BrowserModule,
