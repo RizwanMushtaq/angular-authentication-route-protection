@@ -8,6 +8,10 @@ import { SigninService } from './signin.service';
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
+  isLoading = false;
+  isSigninSuccessful = false;
+  errorMessage: string;
+
   signinForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -19,12 +23,17 @@ export class SigninComponent implements OnInit {
 
   onSubmit() {
     console.log('submitted');
+    this.isLoading = true;
     this.signinService.signin(this.signinForm.value).subscribe({
       next: (response) => {
         console.log(response);
+        this.isLoading = false;
+        this.isSigninSuccessful = true;
       },
-      error: (error) => {
-        console.log(error);
+      error: (errorMessage) => {
+        console.log(errorMessage);
+        this.isLoading = false;
+        this.errorMessage = errorMessage;
       },
     });
   }

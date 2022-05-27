@@ -1,6 +1,12 @@
 <div class="container">
-  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+  <div *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
     <h1>Sign In Form</h1>
+    <div class="form-inner-container error-div" *ngIf="errorMessage">
+      {{ "error occurred " + errorMessage }}
+    </div>
     <div class="form-inner-container">
       <label for="email" class="form-label">email</label>
       <input
